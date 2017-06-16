@@ -1,6 +1,6 @@
 class InsertionSort
 {
-	public static void main(String args[]) throws IOException
+	public static void main(String args[])
 	{
 		int A[] = {5, 1, 3, 4, 2};
 		InsertionSort(A);
