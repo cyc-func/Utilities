@@ -1,7 +1,4 @@
-import java.util.*;
-
-
-class Main
+class MergeSort
 {
 	public static void main(String[] args)
 	{
