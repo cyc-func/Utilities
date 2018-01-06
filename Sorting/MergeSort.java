@@ -1,9 +1,12 @@
-class MergeSort
+import java.util.*;
+
+
+class Main
 {
-	public static void main(String args[])
+	public static void main(String[] args)
 	{
-		int A[] = {5, 1, 3, 4, 2, 6};
-		MergeSort(A);
+		int[] A = {3,2,3,1,2,43,5};
+		mergeSort(A);
 
 		for(int i : A)
 		{
@@ -11,54 +14,52 @@ class MergeSort
 		}
 	}
 
-	private static void MergeSort(int A[])
+	private static void mergeSort(int[] A)
 	{
-		MergeSort(A, 0, A.length - 1);
+		mergeSort(0, A.length - 1, A);
 	}
 
-	private static void MergeSort(int A[], int p, int q)
+	private static void mergeSort(int l, int r, int[] A)
 	{
-		if(p < q)
+		if(l == r)
 		{
-			MergeSort(A, p, (p + q) / 2);
-			MergeSort(A, ((p + q) / 2) + 1, q);
-			Merge(A, p, q);
+			return;
 		}
-	}
 
-	private static void Merge(int A[], int p, int q)
-	{
-		int pqSorted[] = new int[q - p + 1];
+		int m = (l + r)/2;
+		mergeSort(l, m, A);
+		mergeSort(m + 1, r, A);
 
-		int pqIndx = 0;
-		int mid = (p + q) / 2;
-		int pi = p, qi = mid + 1;
+		int[] sortedArray = new int[r - l + 1];
 
-		while(pi <= mid && qi <= q)
+		int sortedIndex = 0;
+		int lIndex = l;
+		int rIndex = m + 1;
+		while(lIndex <= m && rIndex <= r)
 		{
-			if(A[pi] < A[qi])
+			if(A[lIndex] < A[rIndex])
 			{
-				pqSorted[pqIndx++] = A[pi++];
+				sortedArray[sortedIndex++] = A[lIndex++];
 			}
 			else
 			{
-				pqSorted[pqIndx++] = A[qi++];
+				sortedArray[sortedIndex++] = A[rIndex++];
 			}
 		}
 
-		while(pi <= mid)
+		while(lIndex <= m)
 		{
-			pqSorted[pqIndx++] = A[pi++];
+			sortedArray[sortedIndex++] = A[lIndex++];
 		}
 
-		while(qi <= q)
+		while(rIndex <= r)
 		{
-			pqSorted[pqIndx++] = A[qi++];
+			sortedArray[sortedIndex++] = A[rIndex++];
 		}
 
-		for(int i = 0; i < pqSorted.length; i++)
+		for(int i = l; i <= r; i++)
 		{
-			A[p + i] = pqSorted[i];
+			A[i] = sortedArray[i - l];
 		}
 	}
 }
